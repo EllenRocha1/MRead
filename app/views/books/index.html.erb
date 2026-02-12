@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Minha Estante</h1>
+    <%= link_to "Adicionar Livro", new_book_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <% @books.each do |book| %>
+      <div class="col">
+        <div class="card h-100 shadow-sm border-0">
+          <%# Imagem do Livro %>
+          <div class="text-center bg-light p-2">
+            <img src="<%= book.image_url || 'https://via.placeholder.com/150x200?text=Sem+Capa' %>" 
+                 class="card-img-top" style="height: 200px; object-fit: contain;">
+          </div>
+          
+          <div class="card-body">
+            <h5 class="card-title text-truncate"><%= book.title %></h5>
+            <p class="small text-muted mb-0">
+              <strong>Autor:</strong> <%= book.author %><br>
+              <strong>Ano:</strong> <%= book.publish_year %> <%# <-- Garante que esta linha existe %>
+            </p>
+            <p class="small text-primary mb-2" style="font-size: 0.8rem;">
+              <i class="bi bi-person"></i> <%= book.user.email %>
+            </p>
+
+            <div class="mb-3">
+              <% case book.status %>
+              <% when "Lido" %>
+                <span class="badge bg-success"><i class="bi bi-check-circle"></i> Lido</span>
+              <% when "Lendo" %>
+                <span class="badge bg-warning text-dark"><i class="bi bi-book"></i> Lendo</span>
+              <% else %>
+                <span class="badge bg-info text-dark"><i class="bi bi-clock"></i> Para ler</span>
+              <% end %>
+            </div>
+            <hr>
+            
+            <div class="d-flex justify-content-between">
+              <%= link_to edit_book_path(book), class: "btn btn-sm btn-outline-secondary" do %>
+                <i class="bi bi-pencil"></i> Status
+              <% end %>
+
+              <%= button_to book_path(book), method: :delete, 
+                            data: { turbo_confirm: "Tem certeza que deseja remover este livro?" },
+                            class: "btn btn-sm btn-outline-danger" do %>
+                <i class="bi bi-trash"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

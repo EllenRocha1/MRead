@@ -1,0 +1,36 @@
+<%# app/views/books/_search_results.html.erb %>
+<%= turbo_frame_tag "results_frame" do %>
+  <div class="list-group">
+    <% if results.any? %>
+      <% results.each do |book| %>
+        <div class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <% if book[:cover_url] %>
+              <img src="<%= book[:cover_url] %>" style="width: 45px; height: 65px; object-fit: cover; margin-right: 15px;" class="shadow-sm">
+            <% else %>
+              <div style="width: 45px; height: 65px; background: #eee; margin-right: 15px;" class="d-flex align-items-center justify-content-center small text-muted">N/A</div>
+            <% end %>
+            
+            <div>
+              <h6 class="mb-0"><%= book[:title] %></h6>
+              <small class="text-muted"><%= book[:author] %> | <%= book[:publish_year] %></small>
+            </div>
+          </div>
+
+          <%# Este botão envia todos os dados do livro selecionado para o banco de dados %>
+          <%= form_with model: Book.new, url: books_path, local: true, data: { turbo: false } do |f| %>
+            <%= f.hidden_field :title, value: book[:title] %>
+            <%= f.hidden_field :author, value: book[:author] %>
+            <%= f.hidden_field :publish_year, value: book[:publish_year] %>
+            <%= f.hidden_field :isbn, value: book[:isbn] %>
+            <%= f.hidden_field :image_url, value: book[:cover_url] %>
+            <%= f.hidden_field :status, value: "Para ler" %>
+            <%= f.submit "Selecionar", class: "btn btn-sm btn-success" %>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="alert alert-warning">Nenhum livro encontrado para essa busca.</div>
+    <% end %>
+  </div>
+<% end %>
