@@ -1,0 +1,97 @@
+
+
+.book-container {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.choose-view {
+  width: 100%;
+  height: 40px;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.choose-view i {
+  font-size: 24px;
+  /* Ícones de troca de vista em Bronze Antigo */
+  color: var(--accent-brass); 
+  margin-left: 15px;
+}
+
+.book-card {
+  display: inline-block;
+  width: 250px;
+  height: 450px; 
+  /* Fundo do card em Dark Jungle Green para destacar do fundo preto do site */
+  background-color: var(--bg-secondary);
+  /* Sombra sutil mas profunda para o modo dark */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6); 
+  margin: 20px;
+  padding: 15px;
+  vertical-align: top;
+  /* Bordas em Coffee para um contraste elegante */
+  border: 1px solid var(--accent-coffee); 
+  position: relative;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-brass);
+}
+
+.book-cover {
+  /* Borda da capa em Coffee */
+  border: 1px solid var(--accent-coffee); 
+  height: 280px;
+  overflow: hidden;
+  /* Fundo da capa vazio em Chinese Black */
+  background-color: var(--bg-primary); 
+}
+
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.book-description {
+  margin-top: 15px;
+  font-family: 'EB Garamond', serif;
+}
+
+.book-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--accent-brass); 
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+.book-author {
+  font-size: 0.9rem;
+  /* Autor em um tom de Bronze, mas levemente mais discreto */
+  color: var(--accent-brass); 
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Requisitos Injetados no Estilo */
+.book-meta {
+  font-size: 0.75rem;
+  margin-top: 10px;
+  /* Linha divisória em Coffee */
+  border-top: 1px dashed var(--accent-coffee); 
+  padding-top: 5px;
+  color: var(--text-main);
+}
+
+.book-actions {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  right: 15px;
+  display: flex;
+  justify-content: space-between;
+}

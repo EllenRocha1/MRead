@@ -1,10 +1,99 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+@import "./theme.css";
+@import "./auth_book.css"; 
+
+:root {
+  --bg-primary: #0C1519;   
+  
+  --bg-secondary: #162127;  
+  
+  
+  --accent-brass: #CF9D7B; 
+  --accent-coffee: #724B39; 
+  
+ 
+  --text-main: #CF9D7B;     
+  --text-muted: #3A3534;    
+  --white-paper: #F2F2F0;   
+}
+
+body {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-main) !important;
+  font-family: 'EB Garamond', serif; 
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, .navbar-brand {
+  font-family: var(--font-display); /* Certifique-se de carregar essa fonte no head */
+  color: var(--accent-brass) !important;
+  font-weight: 700;
+}
+
+/* 2. Navegação */
+.navbar {
+  background-color: var(--bg-secondary) !important;
+  border-bottom: 2px solid var(--accent-coffee) !important;
+}
+
+.navbar-brand, .nav-link {
+  color: var(--accent-brass) !important;
+}
+
+.nav-link:hover {
+  color: var(--text-light) !important;
+}
+
+/* 3. Cards de Livros (Estilo Ficha Antiga Dark) */
+.card {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--accent-coffee) !important;
+  border-radius: 0 !important;
+  color: var(--text-main) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-brass) !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* 4. Botões e Ações */
+.btn-primary {
+  background-color: var(--accent-coffee) !important;
+  border-color: var(--accent-brass) !important;
+  color: var(--text-light) !important;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-brass) !important;
+  color: var(--bg-primary) !important;
+}
+
+/* 5. Status de Leitura (Badges) */
+.badge-para-ler { 
+  background-color: var(--text-muted) !important; 
+  color: var(--text-light);
+}
+.badge-lendo { 
+  background-color: var(--accent-coffee) !important; 
+  color: var(--text-light);
+}
+.badge-lido { 
+  background-color: var(--accent-brass) !important; 
+  color: var(--bg-primary) !important;
+}
+
+input, textarea {
+  background-color: rgba(12, 21, 25, 0.5) !important;
+  border: 1px solid var(--accent-coffee) !important;
+  color: var(--text-light) !important;
+}
+
+input:focus {
+  border-color: var(--accent-brass) !important;
+  box-shadow: 0 0 5px var(--accent-brass) !important;
+}

@@ -1,54 +1,65 @@
-<div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Minha Estante</h1>
-    <%= link_to "Adicionar Livro", new_book_path, class: "btn btn-primary" %>
+<div class="book-container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-5 border-bottom border-dark pb-3">
+    <h1 style="font-family: var(--font-display); color: var(--coffee-grounds);">Estante</h1>
+    <%= link_to new_book_path, class: "btn btn-primary shadow-sm" do %>
+      <i class="bi bi-plus-circle me-1"></i> Adicionar Livro
+    <% end %>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-4 g-4">
+  <div class="d-flex flex-wrap justify-content-center">
     <% @books.each do |book| %>
-      <div class="col">
-        <div class="card h-100 shadow-sm border-0">
-          <%# Imagem do Livro %>
-          <div class="text-center bg-light p-2">
-            <img src="<%= book.image_url || 'https://via.placeholder.com/150x200?text=Sem+Capa' %>" 
-                 class="card-img-top" style="height: 200px; object-fit: contain;">
-          </div>
-          
-          <div class="card-body">
-            <h5 class="card-title text-truncate"><%= book.title %></h5>
-            <p class="small text-muted mb-0">
-              <strong>Autor:</strong> <%= book.author %><br>
-              <strong>Ano:</strong> <%= book.publish_year %> <%# <-- Garante que esta linha existe %>
-            </p>
-            <p class="small text-primary mb-2" style="font-size: 0.8rem;">
-              <i class="bi bi-person"></i> <%= book.user.email %>
-            </p>
+      <div class="book-card shadow">
+        <%# CAPA DO LIVRO (Requisito Visual) %>
+        <div class="book-cover">
+          <% if book.image_url.present? %>
+            <img src="<%= book.image_url %>" alt="<%= book.title %>" loading="lazy">
+          <% else %>
+            <div class="d-flex align-items-center justify-content-center h-100 bg-secondary text-white opacity-25">
+              <i class="bi bi-book fs-1"></i>
+            </div>
+          <% end %>
+        </div>
 
-            <div class="mb-3">
+        <%# DESCRIÇÃO E REQUISITOS (Título, Autor e Ano) %>
+        <div class="book-description">
+          <p class="book-title text-truncate" title="<%= book.title %>"><%= book.title %></p>
+          <span class="book-author">por <%= book.author %></span>
+          
+          <div class="book-meta mt-2">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <span class="small fw-bold text-muted"><%= book.publish_year %></span>
+              
+              <%# BADGE DE STATUS (Requisito 1.2) %>
               <% case book.status %>
               <% when "Lido" %>
-                <span class="badge bg-success"><i class="bi bi-check-circle"></i> Lido</span>
+                <span class="badge" style="background-color: var(--berkeley-hills); font-size: 0.65rem;">Lido</span>
               <% when "Lendo" %>
-                <span class="badge bg-warning text-dark"><i class="bi bi-book"></i> Lendo</span>
+                <span class="badge" style="background-color: var(--mojave-desert); color: var(--coffee-grounds); font-size: 0.65rem;">Lendo</span>
               <% else %>
-                <span class="badge bg-info text-dark"><i class="bi bi-clock"></i> Para ler</span>
+                <span class="badge" style="background-color: var(--mountain-road); font-size: 0.65rem;">Para ler</span>
               <% end %>
             </div>
-            <hr>
-            
-            <div class="d-flex justify-content-between">
-              <%= link_to edit_book_path(book), class: "btn btn-sm btn-outline-secondary" do %>
-                <i class="bi bi-pencil"></i> Status
-              <% end %>
 
-              <%= button_to book_path(book), method: :delete, 
-                            data: { turbo_confirm: "Tem certeza que deseja remover este livro?" },
-                            class: "btn btn-sm btn-outline-danger" do %>
-                <i class="bi bi-trash"></i>
-              <% end %>
+            <%# IDENTIFICAÇÃO DO DONO (Requisito 1.1) %>
+            <div class="small" style="color: var(--berkeley-hills); font-size: 0.7rem; font-style: italic;">
+              <i class="bi bi-person"></i> <%= book.user.email.split('@').first %>
             </div>
           </div>
         </div>
+
+        <% if user_signed_in? && book.user == current_user %>
+          <div class="book-actions mt-3">
+            <%= link_to edit_book_path(book), title: "Editar Status", class: "btn btn-sm p-0 text-secondary" do %>
+              <i class="bi bi-pencil-square"></i>
+            <% end %>
+            
+            <%= button_to book_path(book), method: :delete, 
+                          class: "btn btn-sm p-0 text-danger bg-transparent border-0", 
+                          data: { turbo_confirm: "Deseja remover este exemplar da coleção?" } do %>
+              <i class="bi bi-trash3"></i>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>

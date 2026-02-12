@@ -1,0 +1,111 @@
+
+
+.auth-container {
+  /* Fundo principal em Chinese Black */
+  background-color: var(--bg-primary); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 85vh;
+}
+
+.book-auth {
+  position: relative;
+  width: 400px;
+  height: 550px;
+  /* Interior do livro em Dark Jungle Green */
+  background-color: var(--bg-secondary); 
+  transform-style: preserve-3d;
+  perspective: 2000px;
+  transition: transform 0.8s ease;
+  box-shadow: 20px 0 60px rgba(0,0,0,0.7), inset 300px 0 50px rgba(0,0,0,0.3);
+}
+
+.cover-box {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Capa em Dark Jungle Green para destaque sutil */
+  background-color: var(--bg-secondary); 
+  /* Borda dupla em Bronze Antigo */
+  border: 4px double var(--accent-brass);
+  transform-origin: left;
+  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+}
+
+.book-auth:hover .cover-box {
+  transform: rotateY(-150deg); 
+}
+
+.cover-logo {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 3px solid var(--accent-brass);
+  /* Fundo da logo em Chinese Black para contraste */
+  background-color: var(--bg-primary); 
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  margin-bottom: 25px;
+}
+
+.cover-title {
+  color: var(--accent-brass);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 1.6rem;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.bark {
+  position: absolute;
+  left: 0;
+  width: 25px;
+  height: 100%;
+  /* Cor Coffee para a lombada */
+  background: var(--accent-coffee); 
+  box-shadow: inset -2px 0 5px rgba(0,0,0,0.5);
+  z-index: 11;
+}
+
+.form-details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 60px 40px;
+  background-color: var(--bg-secondary);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-input-group input {
+  width: 100%;
+  background: transparent !important;
+  border: none !important;
+  /* Linha de escrita em Bronze */
+  border-bottom: 1px solid var(--accent-brass) !important;
+  padding: 10px 0;
+  font-family: 'EB Garamond', serif;
+  outline: none;
+  color: var(--text-light) !important;
+}
+
+.auth-input-group input::placeholder {
+  color: var(--accent-coffee);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
