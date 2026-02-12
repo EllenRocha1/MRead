@@ -1,0 +1,93 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+// ============================================
+// PALETA "VINTAGE LIBRARSY"
+// ============================================
+
+$coffee-grounds: #402615; // Marrom café bem escuro (Texto)
+$berkeley-hills: #7d5e3c; // Marrom médio quente (Cor Primária/Botões)
+$mountain-road:  #878679; // Cinza esverdeado (Secundário)
+$mojave-desert:  #bea683; // Bege médio (Bordas ou detalhes)
+$almond-wisp:    #d6c8b1; // Creme claro (Fundo do site)
+
+// ============================================
+// OVERRIDES DO BOOTSTRAP
+// ============================================
+
+// Fundo e Texto Geral
+$body-bg:       $almond-wisp;    // O fundo do site será o creme claro
+$body-color:    $coffee-grounds; // O texto padrão será o marrom escuro (mais suave que preto)
+
+// Cores dos Botões e Links
+$primary:       $berkeley-hills; // Botões 'btn-primary' e links serão esse marrom quente
+$secondary:     $mountain-road;  // Botões 'btn-secondary' serão o cinza
+
+// Links (hover)
+$link-hover-color: darken($berkeley-hills, 15%);
+
+// Bordas e componentes suaves
+$border-color:  $mojave-desert; // Bordas de cards e inputs
+$light:         $almond-wisp;   // Redefinindo o 'bg-light' do Bootstrap
+
+$font-family-base: "Georgia", "Times New Roman", Times, serif;
+
+// ============================================
+// IMPORTAÇÃO DO BOOTSTRAP 
+// ============================================
+
+// O Bootstrap precisa ser importado DEPOIS das variáveis acima
+@import 'bootstrap/scss/bootstrap';
+@import "main";
+
+// ============================================
+// ESTILOS CUSTOMIZADOS EXTRAS
+// ============================================
+
+:root {
+  /* Substituindo as cores globais do template pelas da sua paleta */
+  --default-color: #402615 !important;    /* Coffee Grounds */
+  --background-color: #d6c8b1 !important; /* Almond Wisp */
+  --heading-color: #402615 !important;    /* Coffee Grounds */
+  --accent-color: #7d5e3c !important;     /* Berkeley Hills */
+  --surface-color: #d6c8b1 !important;    /* Almond Wisp */
+  --contrast-color: #402615 !important;
+}
+
+/* Forçando o fundo em seções que o template trava em preto */
+body, 
+.index-page, 
+section, 
+.main, 
+#header, 
+#footer,
+.hero,
+.gallery {
+  background-color: #d6c8b1 !important; /* Almond Wisp */
+  color: #402615 !important;           /* Coffee Grounds */
+}
+
+/* Ajustando links e botões */
+.navmenu a, .navmenu a:focus {
+  color: #402615 !important;
+}
+
+.navmenu a:hover, .navmenu .active {
+  color: #7d5e3c !important; /* Berkeley Hills */
+}
+
+.btn-get-started {
+  background-color: #7d5e3c !important;
+  color: #d6c8b1 !important;
+  &:hover {
+    background-color: #402615 !important;
+  }
+}

@@ -72,3 +72,5 @@ gem "httparty"
 gem "bootstrap", "~> 5.3"
 
 gem "cssbundling-rails"
+
+gem "dartsass-rails"
