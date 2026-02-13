@@ -1,6 +1,6 @@
 #  MRead - Biblioteca Digital Pessoal
 
-<img src="app/assets/images/logo.jpg" alt="MRead Preview" width="50%" align-center>
+<img src="app/assets/images/preview.png" alt="MRead Preview" width="50%">
 
 O **MRead** é uma aplicação web desenvolvida em Ruby on Rails voltada para a organização e gerenciamento de estantes de leitura. O projeto utiliza uma arquitetura moderna baseada em Hotwire para oferecer uma experiência de navegação fluida, integrando-se à API da OpenLibrary para automação de metadados.
 
@@ -150,7 +150,7 @@ Pessoa responsável pelo desenvolvimento do projeto:
         <img src="https://github.com/seu-github.png" width="100px;" alt="Sua Foto"/>
         <br/>
         <sub>
-          <b>Seu Nome</b>
+          <b> Ellen Rocha </b>
         </sub>
       </a>
     </td>
