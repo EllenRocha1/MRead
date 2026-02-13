@@ -149,7 +149,7 @@ Pessoa responsável pelo desenvolvimento do projeto:
   <tr>
     <td align="center">
       <a href="https://github.com/EllenRocha1" title="Perfil no GitHub">
-        <img src="https://github.com/seu-github.png" width="100px;" alt="Sua Foto"/>
+        <img src="https://github.com/EllenRocha1.png" width="100px;"/>
         <br/>
         <sub>
           <b> Ellen Rocha </b>
