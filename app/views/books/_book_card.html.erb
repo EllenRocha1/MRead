@@ -1,0 +1,39 @@
+<div class="book-container py-5">
+  <%# 1. CABEÇALHO DINÂMICO %>
+  <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-dark pb-3">
+    <h1 class="main-heading mb-0"><%= @title %></h1>
+    <% if user_signed_in? %>
+      <%= link_to new_book_path, class: "btn btn-brass shadow-sm" do %>
+        <i class="bi bi-plus-circle me-1"></i> Adicionar Livro
+      <% end %>
+    <% end %>
+  </div>
+
+  <%# 2. SISTEMA DE ABAS %>
+  <% if user_signed_in? %>
+    <div class="d-flex justify-content-center mb-5">
+      <div class="btn-group shadow">
+        <%= link_to books_path, 
+            class: "btn #{params[:view] == 'mine' ? 'btn-outline-brass' : 'btn-brass'}" do %>
+          <i class="bi bi-globe me-1"></i> Acervo Global
+        <% end %>
+        <%= link_to books_path(view: 'mine'), 
+            class: "btn #{params[:view] == 'mine' ? 'btn-brass' : 'btn-outline-brass'}" do %>
+          <i class="bi bi-bookshelf me-1"></i> Minha Estante
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%# 3. LISTAGEM DE LIVROS (Muito mais limpa!) %>
+  <div class="d-flex flex-wrap justify-content-center gap-4">
+    <% if @books.any? %>
+      <%# O Rails renderiza automaticamente o partial _book_card para cada livro em @books %>
+      <%= render @books %>
+    <% else %>
+      <div class="text-center py-5">
+        <p class="text-brass opacity-50">Nenhum livro encontrado nesta seção.</p>
+      </div>
+    <% end %>
+  </div>
+</div>

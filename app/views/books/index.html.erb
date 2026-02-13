@@ -1,65 +1,89 @@
 <div class="book-container py-5">
-  <div class="d-flex justify-content-between align-items-center mb-5 border-bottom border-dark pb-3">
-    <h1 style="font-family: var(--font-display); color: var(--coffee-grounds);">Estante</h1>
-    <%= link_to new_book_path, class: "btn btn-primary shadow-sm" do %>
-      <i class="bi bi-plus-circle me-1"></i> Adicionar Livro
+  <%# 1. CABEÇALHO DINÂMICO %>
+  <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-dark pb-3">
+    <h1 class="main-heading mb-0"><%= @title %></h1>
+    
+    <% if user_signed_in? %>
+      <%= link_to new_book_path, class: "btn btn-brass shadow-sm" do %>
+        <i class="bi bi-plus-circle me-1"></i> Adicionar Livro
+      <% end %>
     <% end %>
   </div>
 
-  <div class="d-flex flex-wrap justify-content-center">
-    <% @books.each do |book| %>
-      <div class="book-card shadow">
-        <%# CAPA DO LIVRO (Requisito Visual) %>
-        <div class="book-cover">
-          <% if book.image_url.present? %>
-            <img src="<%= book.image_url %>" alt="<%= book.title %>" loading="lazy">
-          <% else %>
-            <div class="d-flex align-items-center justify-content-center h-100 bg-secondary text-white opacity-25">
-              <i class="bi bi-book fs-1"></i>
+  <%# 2. SISTEMA DE ABAS (Filtro de Escopo) %>
+  <% if user_signed_in? %>
+    <div class="d-flex justify-content-center mb-5">
+      <div class="btn-group shadow">
+        <%= link_to books_path, 
+            class: "btn #{params[:view] == 'mine' ? 'btn-outline-brass' : 'btn-brass'}" do %>
+          <i class="bi bi-globe me-1"></i> Acervo Global
+        <% end %>
+        
+        <%= link_to books_path(view: 'mine'), 
+            class: "btn #{params[:view] == 'mine' ? 'btn-brass' : 'btn-outline-brass'}" do %>
+          <i class="bi bi-bookshelf me-1"></i> Minha Estante
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%# 3. LISTAGEM DE LIVROS %>
+  <div class="d-flex flex-wrap justify-content-center gap-4">
+    <% if @books.any? %>
+      <% @books.each do |book| %>
+        <div class="book-card shadow">
+          <%# CAPA %>
+          <div class="book-cover">
+            <% if book.image_url.present? %>
+              <%= image_tag book.image_url, alt: book.title, loading: "lazy" %>
+            <% else %>
+              <div class="cover-placeholder">
+                <i class="bi bi-book fs-1"></i>
+              </div>
+            <% end %>
+          </div>
+
+          <%# DESCRIÇÃO %>
+          <div class="book-description">
+            <p class="book-title text-truncate" title="<%= book.title %>"><%= book.title %></p>
+            <span class="book-author">por <%= book.author %></span>
+            
+            <div class="book-meta mt-2">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="book-year"><%= book.publish_year %></span>
+                
+                <%# STATUS COM CLASSES SEMÂNTICAS %>
+                <span class="badge badge-status-<%= book.status.parameterize %>">
+                  <%= book.status %>
+                </span>
+              </div>
+
+              <%# DONO DO LIVRO %>
+              <div class="book-owner">
+                <i class="bi bi-person"></i> <%= book.user.email.split('@').first %>
+              </div>
+            </div>
+          </div>
+
+          <%# AÇÕES (Apenas para o dono) %>
+          <% if user_signed_in? && book.user == current_user %>
+            <div class="book-actions">
+              <%= link_to edit_book_path(book), class: "action-icon text-warning" do %>
+                <i class="bi bi-pencil-square"></i>
+              <% end %>
+              
+              <%= button_to book_path(book), method: :delete, 
+                  class: "btn-delete-icon", 
+                  data: { turbo_confirm: "Deseja remover este exemplar da coleção?" } do %>
+                <i class="bi bi-trash3"></i>
+              <% end %>
             </div>
           <% end %>
         </div>
-
-        <%# DESCRIÇÃO E REQUISITOS (Título, Autor e Ano) %>
-        <div class="book-description">
-          <p class="book-title text-truncate" title="<%= book.title %>"><%= book.title %></p>
-          <span class="book-author">por <%= book.author %></span>
-          
-          <div class="book-meta mt-2">
-            <div class="d-flex justify-content-between align-items-center mb-1">
-              <span class="small fw-bold text-muted"><%= book.publish_year %></span>
-              
-              <%# BADGE DE STATUS (Requisito 1.2) %>
-              <% case book.status %>
-              <% when "Lido" %>
-                <span class="badge" style="background-color: var(--berkeley-hills); font-size: 0.65rem;">Lido</span>
-              <% when "Lendo" %>
-                <span class="badge" style="background-color: var(--mojave-desert);  font-size: 0.65rem;">Lendo</span>
-              <% else %>
-                <span class="badge" style="background-color: var(--mountain-road); font-size: 0.65rem;">Para ler</span>
-              <% end %>
-            </div>
-
-            <%# IDENTIFICAÇÃO DO DONO (Requisito 1.1) %>
-            <div class="small" style="color: var(--accent-brass); font-size: 0.7rem; font-style: italic;">
-              <i class="bi bi-person"></i> <%= book.user.email.split('@').first %>
-            </div>
-          </div>
-        </div>
-
-        <% if user_signed_in? && book.user == current_user %>
-          <div class="book-actions mt-3">
-            <%= link_to edit_book_path(book), title: "Editar Status", class: "btn btn-sm p-0 text-secondary" do %>
-              <i class="bi bi-pencil-square"></i>
-            <% end %>
-            
-            <%= button_to book_path(book), method: :delete, 
-                          class: "btn btn-sm p-0 text-danger bg-transparent border-0", 
-                          data: { turbo_confirm: "Deseja remover este exemplar da coleção?" } do %>
-              <i class="bi bi-trash3"></i>
-            <% end %>
-          </div>
-        <% end %>
+      <% end %>
+    <% else %>
+      <div class="text-center py-5">
+        <p class="text-brass opacity-50">Nenhum livro encontrado nesta seção.</p>
       </div>
     <% end %>
   </div>
