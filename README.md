@@ -12,16 +12,16 @@ O **MRead** é uma aplicação web desenvolvida em Ruby on Rails voltada para a 
 
 O sistema foi estruturado para atender a requisitos de escalabilidade e separação de conceitos (SoC):
 
-### 🔎 Arquitetura de Busca
+### Arquitetura de Busca
 A comunicação com a API externa ocorre via backend através do `OpenLibraryService`, utilizando a biblioteca nativa `Net::HTTP` do Ruby para maior leveza.
 
-### ⚡ Interatividade Assíncrona
+### Interatividade Assíncrona
 O frontend é gerenciado por **Stimulus JS**, que aplica técnicas de *debounce* para otimizar requisições à API, enquanto o **Turbo Frames** processa atualizações parciais de interface.
 
-### 🗄️ Gestão de Dados
+### Gestão de Dados
 A persistência é realizada em **SQLite**, com autenticação robusta via **Devise**, permitindo que cada usuário gerencie exclusivamente sua própria coleção.
 
-### 🎨 Estética Visual
+### Estética Visual
 Utiliza o tema **Royal Dark**, com paleta de cores centralizada em variáveis CSS para garantir consistência visual em todos os componentes.
 
 ---
@@ -148,7 +148,7 @@ Pessoa responsável pelo desenvolvimento do projeto:
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/seu-github" title="Perfil no GitHub">
+      <a href="https://github.com/EllenRocha1" title="Perfil no GitHub">
         <img src="https://github.com/seu-github.png" width="100px;" alt="Sua Foto"/>
         <br/>
         <sub>
