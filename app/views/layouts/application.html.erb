@@ -23,7 +23,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-light">
+  <% auth_page = controller_name == "sessions" && action_name == "new" %>
+
+  <body class="<%= [controller_name.dasherize, action_name.dasherize, "#{controller_name.dasherize}-#{action_name.dasherize}"].join(" ") %>">
+    
     <%# 1. HEADER / NAVBAR (Requisito 1.1) %>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
       <div class="container">
@@ -69,7 +72,7 @@
     </nav>
 
     <%# 2. MENSAGENS DE FLASH (Sucesso/Erro) %>
-    <div class="container">
+     <div class="<%= auth_page ? 'container-fluid px-0' : 'container' %>">
       <% if notice %>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           <%= notice %>
@@ -84,7 +87,7 @@
       <% end %>
 
       <%# 3. CONTEÚDO DA PÁGINA %>
-      <main>
+      <main class="<%= auth_page ? 'auth-main' : 'page-main' %>">
         <%= yield %>
       </main>
     </div>

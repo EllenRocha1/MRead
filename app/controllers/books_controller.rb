@@ -27,7 +27,8 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to books_path, notice: "Livro '#{@book.title}' adicionado à sua estante!"
     else
-      render :new, alert: "Erro ao efetivar o cadastro."
+      flash.now[:alert] = "Erro ao efetivar o cadastro."
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -56,4 +57,5 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :author, :isbn, :publish_year, :image_url, :status)
   end
+  
 end

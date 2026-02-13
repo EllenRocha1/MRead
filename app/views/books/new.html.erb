@@ -16,20 +16,12 @@
             </div>
           <% end %>
 
-          <%= turbo_frame_tag "results_frame" do %>
-            <div class="text-center mt-3 d-none-when-loaded" id="loading-spinner">
-              <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Carregando...</span>
-              </div>
-           </div>
-          <% end %>
-
           <hr>
 
           <%# Este é o container onde os resultados do JS/Turbo vão aparecer %>
           <%= turbo_frame_tag "results_frame" do %>
-            <div class="text-center text-muted">
-              <p>Os resultados da Open Library aparecerão aqui após a busca.</p>
+             <div class="search-placeholder" id="results-placeholder">
+              <p>Os resultados da Open Library aparecerão aqui!</p>
             </div>
           <% end %>
 

@@ -2,17 +2,12 @@ require "test_helper"
 
 class BooksControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get books_index_url
+    get books_url
     assert_response :success
   end
 
-  test "should get new" do
-    get books_new_url
-    assert_response :success
-  end
-
-  test "should get show" do
-    get books_show_url
-    assert_response :success
+  test "unauthenticated users should be redirected from new" do
+    get new_book_url
+    assert_redirected_to new_user_session_path
   end
 end

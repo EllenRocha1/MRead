@@ -107,7 +107,18 @@
   margin-top: 10px;
   border-top: 1px dashed var(--accent-coffee); 
   padding-top: 5px;
+}
+
+.small.fw-bold.text-muted {
   color: var(--accent-brass) !important;
+}
+
+.search-placeholder {
+  color: var(--accent-brass);
+  text-align: center;
+  opacity: 0.6;
+  padding: 2rem;
+  border: 1px dashed var(--accent-coffee); 
 }
 
 .book-actions {
