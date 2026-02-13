@@ -10,13 +10,13 @@
       
       <div class="cover-title">
         MRead<br>
-        <span style="font-size: 0.7rem; letter-spacing: 2px;">Entrar</span>
+        <span class="auth-subtitle">ACERVO</span>
       </div>
     </div>
 
     <%# 2. INTERIOR (Formulário) %>
-    <div class="form-details" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 60px 40px; z-index: 5; background-color: var(--paper-cream);">
-      <h3 class="text-center mb-5" style="font-family: var(--font-display); color: var(--coffee-grounds);">
+    <div class="auth-form-container">
+      <h3 class="auth-heading">
         Entrar no Sistema
       </h3>
       
@@ -35,7 +35,7 @@
       <% end %>
 
       <div class="mt-auto text-center small border-top pt-4">
-        <%= render "devise/shared/links" %>
+        <%= render "devise/shared/links", style: "text-decoration: none; color: var(--accent-brass);" %>
       </div>
     </div>
 

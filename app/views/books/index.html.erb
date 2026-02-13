@@ -34,14 +34,14 @@
               <% when "Lido" %>
                 <span class="badge" style="background-color: var(--berkeley-hills); font-size: 0.65rem;">Lido</span>
               <% when "Lendo" %>
-                <span class="badge" style="background-color: var(--mojave-desert); color: var(--coffee-grounds); font-size: 0.65rem;">Lendo</span>
+                <span class="badge" style="background-color: var(--mojave-desert);  font-size: 0.65rem;">Lendo</span>
               <% else %>
                 <span class="badge" style="background-color: var(--mountain-road); font-size: 0.65rem;">Para ler</span>
               <% end %>
             </div>
 
             <%# IDENTIFICAÇÃO DO DONO (Requisito 1.1) %>
-            <div class="small" style="color: var(--berkeley-hills); font-size: 0.7rem; font-style: italic;">
+            <div class="small" style="color: var(--accent-brass); font-size: 0.7rem; font-style: italic;">
               <i class="bi bi-person"></i> <%= book.user.email.split('@').first %>
             </div>
           </div>

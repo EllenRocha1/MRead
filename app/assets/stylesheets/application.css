@@ -2,6 +2,7 @@
 @import "./auth_book.css"; 
 
 :root {
+  
   --bg-primary: #0C1519;   
   
   --bg-secondary: #162127;  
@@ -24,12 +25,11 @@ body {
 }
 
 h1, h2, h3, h4, h5, .navbar-brand {
-  font-family: var(--font-display); /* Certifique-se de carregar essa fonte no head */
+  font-family: var(--font-display); 
   color: var(--accent-brass) !important;
   font-weight: 700;
 }
 
-/* 2. Navegação */
 .navbar {
   background-color: var(--bg-secondary) !important;
   border-bottom: 2px solid var(--accent-coffee) !important;
@@ -43,7 +43,6 @@ h1, h2, h3, h4, h5, .navbar-brand {
   color: var(--text-light) !important;
 }
 
-/* 3. Cards de Livros (Estilo Ficha Antiga Dark) */
 .card {
   background-color: var(--bg-secondary) !important;
   border: 1px solid var(--accent-coffee) !important;
@@ -58,7 +57,6 @@ h1, h2, h3, h4, h5, .navbar-brand {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* 4. Botões e Ações */
 .btn-primary {
   background-color: var(--accent-coffee) !important;
   border-color: var(--accent-brass) !important;
@@ -73,7 +71,6 @@ h1, h2, h3, h4, h5, .navbar-brand {
   color: var(--bg-primary) !important;
 }
 
-/* 5. Status de Leitura (Badges) */
 .badge-para-ler { 
   background-color: var(--text-muted) !important; 
   color: var(--text-light);

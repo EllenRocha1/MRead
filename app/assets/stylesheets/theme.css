@@ -1,4 +1,36 @@
+.main-heading {
+  font-family: var(--font-display);
+  color: var(--accent-brass);
+  text-align: center;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
 
+.book-card__meta-info {
+  color: var(--accent-brass);
+  font-size: 0.75rem;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.search-result__img {
+  width: 50px;
+  height: 70px;
+  object-fit: cover;
+  border: 1px solid var(--accent-coffee);
+}
+
+.search-result__placeholder {
+  width: 50px;
+  height: 70px;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--accent-coffee);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-brass);
+}
 
 .book-container {
   margin: 0 auto;
@@ -14,7 +46,6 @@
 
 .choose-view i {
   font-size: 24px;
-  /* Ícones de troca de vista em Bronze Antigo */
   color: var(--accent-brass); 
   margin-left: 15px;
 }
@@ -23,14 +54,11 @@
   display: inline-block;
   width: 250px;
   height: 450px; 
-  /* Fundo do card em Dark Jungle Green para destacar do fundo preto do site */
   background-color: var(--bg-secondary);
-  /* Sombra sutil mas profunda para o modo dark */
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6); 
   margin: 20px;
   padding: 15px;
   vertical-align: top;
-  /* Bordas em Coffee para um contraste elegante */
   border: 1px solid var(--accent-coffee); 
   position: relative;
   transition: border-color 0.3s ease, transform 0.3s ease;
@@ -42,11 +70,9 @@
 }
 
 .book-cover {
-  /* Borda da capa em Coffee */
   border: 1px solid var(--accent-coffee); 
   height: 280px;
   overflow: hidden;
-  /* Fundo da capa vazio em Chinese Black */
   background-color: var(--bg-primary); 
 }
 
@@ -71,20 +97,17 @@
 
 .book-author {
   font-size: 0.9rem;
-  /* Autor em um tom de Bronze, mas levemente mais discreto */
   color: var(--accent-brass); 
   opacity: 0.8;
   font-style: italic;
 }
 
-/* Requisitos Injetados no Estilo */
 .book-meta {
   font-size: 0.75rem;
   margin-top: 10px;
-  /* Linha divisória em Coffee */
   border-top: 1px dashed var(--accent-coffee); 
   padding-top: 5px;
-  color: var(--text-main);
+  color: var(--accent-brass) !important;
 }
 
 .book-actions {
