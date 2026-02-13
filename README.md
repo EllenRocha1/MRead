@@ -66,7 +66,7 @@ docker compose exec web rails db:prepare
 
 Acesse: `http://localhost:3000`
 
-Caso a porta 3000 já esteja em uso, você pode alterar o mapeamento no docker-compose.yml (ex: '3001:3000') e acessar via localhost:3001.
+⚠️ Caso a porta 3000 já esteja em uso, você pode alterar o mapeamento no docker-compose.yml (ex: '3001:3000') e acessar via localhost:3001.
 
 ### Autenticação
 
