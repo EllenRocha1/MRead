@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
+  root "books#index"
   devise_for :users
-  
+
   resources :books do
     collection do
-      get :search
+      get 'search'
     end
   end
 
-  root "books#index"
-  
   get "up" => "rails/health#show", as: :rails_health_check
 end

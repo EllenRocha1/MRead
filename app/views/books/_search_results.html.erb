@@ -1,3 +1,4 @@
+<%# app/views/books/_search_results.html.erb %>
 <%= turbo_frame_tag "results_frame" do %>
   <div class="list-group search-results-list">
     <% if results.any? %>
@@ -11,7 +12,8 @@
               <div class="search-result-placeholder d-flex align-items-center justify-content-center">N/A</div>
             <% end %>
             
-            <div id="search-result-info">
+            <%# Mudamos de ID para CLASSE para evitar duplicatas no DOM %>
+            <div class="search-result-info">
               <h6 class="mb-0 search-result-title"><%= book[:title] %></h6>
               <small class="search-result-author">
                 <%= book[:author] %> | <%= book[:publish_year] %>
@@ -19,7 +21,7 @@
             </div>
           </div>
 
-          <%# Persistência: Este formulário cumpre o requisito de cadastro via clique %>
+          <%# Persistência: Este formulário garante que o clique salve os dados no SQLite via Docker %>
           <%= form_with model: Book.new, url: books_path, local: true, data: { turbo: false } do |f| %>
             <%= f.hidden_field :title, value: book[:title] %>
             <%= f.hidden_field :author, value: book[:author] %>
@@ -28,8 +30,8 @@
             <%= f.hidden_field :image_url, value: book[:cover_url] %>
             <%= f.hidden_field :status, value: "Para ler" %>
             
-            <%# Botão personalizado com a cor Antique Brass %>
-            <%= f.submit "Selecionar", class: "btn btn-sm btn-primary border-0", style: "background-color: var(--accent-coffee);" %>
+            <%# Usamos a classe .btn-coffee para remover o último estilo inline %>
+            <%= f.submit "Selecionar", class: "btn btn-sm btn-coffee" %>
           <% end %>
 
         </div>

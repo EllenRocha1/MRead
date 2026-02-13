@@ -1,35 +1,55 @@
-<div class="container mt-4">
+<div class="container py-5" data-controller="search-books">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h2 class="card-title mb-4">Pesquisar Livro</h2>
+      
+      <h2 class="main-heading">Adicionar Novo Livro</h2>
+
+      <div class="search-box p-4 rounded mb-4 shadow" style="background-color: var(--bg-secondary); border: 1px solid var(--accent-coffee);">
+        
+        <%# Form de fachada: 'url: "#"' impede submissões acidentais que mudam a página %>
+        <%= form_with url: "#", method: :get, data: { action: "submit->search-books#prevent" } do |f| %>
+          <label class="form-label mb-2" style="color: var(--accent-brass);">Pesquisar na Open Library</label>
           
-          <%# Formulário de Busca: ele envia os dados para a ação 'search' via GET %>
-          <%= form_with url: search_books_path, method: :get, data: { turbo_frame: "results_frame" } do |f| %>
-            <div class="input-group mb-3">
-              <%= f.text_field :query, 
-                               class: "form-control form-control-lg", 
-                               placeholder: "Digite o Título para buscar...", 
-                               required: true %>
-              <%= f.submit "Pesquisar", class: "btn btn-primary" %>
-            </div>
-          <% end %>
-
-          <hr>
-
-          <%# Este é o container onde os resultados do JS/Turbo vão aparecer %>
-          <%= turbo_frame_tag "results_frame" do %>
-             <div class="search-placeholder" id="results-placeholder">
-              <p>Os resultados da Open Library aparecerão aqui!</p>
-            </div>
-          <% end %>
-
-          <div class="mt-3 text-center">
-            <%= link_to "Voltar para minha estante", books_path, class: "btn btn-link text-secondary" %>
+          <div class="input-group">
+            <%= f.text_field :query, 
+                             class: "form-control bg-dark text-light border-brass", 
+                             placeholder: "Digite o título para buscar...", 
+                             data: { 
+                               search_books_target: "input",
+                               action: "keyup->search-books#search" 
+                             } %>
+            
+            <button type="button" class="btn btn-brass" data-action="click->search-books#search">
+              <i class="bi bi-search"></i> Pesquisar
+            </button>
           </div>
-        </div>
+
+          <%# Feedback visual: O Spinner Dourado (JS Exibição) %>
+          <div data-search-books-target="loading" class="text-center mt-3 d-none">
+            <div class="spinner-border" style="color: var(--accent-brass);" role="status"></div>
+            <p class="small mt-2" style="color: var(--accent-brass);">Consultando pergaminhos digitais...</p>
+          </div>
+        <% end %>
       </div>
+
+      <hr class="border-brass opacity-25">
+
+      <%# O container onde o JavaScript injetará os resultados via Turbo Frame %>
+      <div data-search-books-target="results">
+        <%= turbo_frame_tag "results_frame", 
+                             data: { action: "turbo:frame-load->search-books#hideLoading" } do %>
+           <div class="search-placeholder" id="results-placeholder">
+             <p>Os resultados da Open Library aparecerão aqui após a busca.</p>
+           </div>
+        <% end %>
+      </div>
+
+      <div class="mt-4 text-center">
+        <%= link_to books_path, class: "btn-link text-decoration-none", style: "color: var(--accent-brass);" do %>
+          <i class="bi bi-arrow-left"></i> Voltar para minha estante
+        <% end %>
+      </div>
+
     </div>
   </div>
 </div>

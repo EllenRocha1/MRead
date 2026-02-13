@@ -12,13 +12,12 @@ class BooksController < ApplicationController
 
   def search
     query = params[:query].to_s.strip
-    if query.present?
-      @results = OpenLibraryService.search_by_title(query)
-    else
-      @results = []
-    end
+    @results = query.present? ? OpenLibraryService.search_by_title(query) : []
 
-    render partial: "search_results", locals: { results: @results }
+    respond_to do |format|
+      # Renderiza o partial sem o layout global, essencial para o Turbo Frame funcionar
+      format.html { render partial: "search_results", locals: { results: @results } }
+    end
   end
 
   def create
@@ -47,7 +46,7 @@ class BooksController < ApplicationController
     @book.destroy
     redirect_to books_path, notice: "Livro removido.", status: :see_other
   end
-
+  
   private
 
   def set_book
@@ -55,7 +54,9 @@ class BooksController < ApplicationController
   end
 
   def book_params
+    # Incluímos :image_url e :isbn para garantir que os dados da API sejam persistidos
     params.require(:book).permit(:title, :author, :isbn, :publish_year, :image_url, :status)
   end
+  
   
 end

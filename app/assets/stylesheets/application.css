@@ -107,9 +107,6 @@ input:focus {
   color: var(--accent-brass) !important;
 }
 
-#search-result-info{
-  margin-left: 15px;
-}
 
 .text-muted {
   color: var(--white-paper) !important;
