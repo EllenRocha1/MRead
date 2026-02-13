@@ -141,9 +141,7 @@ Integrei o Stimulus aos eventos nativos do Turbo (`turbo:frame-load`), sincroniz
 
 ---
 
-## 👥 Colaboradores
-
-Pessoa responsável pelo desenvolvimento do projeto:
+## 👥 Colaborador(es):
 
 <table>
   <tr>
