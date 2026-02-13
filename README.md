@@ -98,7 +98,7 @@ para gerenciar seus registros pessoais.
 
 ---
 
-## Política de Uso de IA
+## Uso de IA
 
 O uso de assistentes de IA (Gemini/ChatGPT) foi adotado como colaborador técnico para auxiliar na arquitetura e acelerar o desenvolvimento de componentes específicos.
 
